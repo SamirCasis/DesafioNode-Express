@@ -1,0 +1,26 @@
+{
+  "name": "desafionode",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "eslintConfig": {
+    "extends": [
+      "./node_modules/standard/eslintrc.json"
+    ]
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Samir Casis V",
+  "license": "ISC",
+  "description": "Desafio express 2024",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.0"
+  },
+  "devDependencies": {
+    "standard": "^17.1.0"
+  }
+}
