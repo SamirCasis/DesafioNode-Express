@@ -1,18 +1,10 @@
-import fs from fs
-import express from express
-import cors from cors
+import 'dotenv/config'
+import express from 'express'
 
 const app = express()
+const PORT = process.env.PORT ?? 3000
 
 app.use(express.json())
-app.use(cors())
 
-app.get('./', (req, resp ) => {})
 
-app.post('./', (req, resp ) => {})
-
-app.put('./', (req, resp ) => {})
-
-app.delete('./', (req, resp ) => {})
-
-app.listen(3000, () => console.log('SERVER 100% Operativo'))
+app.listen(PORT, () => console.log(`SERVER OK en el puerto ${PORT} -> http://localhost:${PORT}`))
