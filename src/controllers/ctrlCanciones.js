@@ -1,8 +1,6 @@
 import fs from 'fs'
 import path from 'path'
 
-let canciones = []
-
 const getFront = (req, res) => {
   const filePath = path.resolve('index.html')
   res.sendFile(filePath)
