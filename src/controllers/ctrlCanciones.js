@@ -23,7 +23,7 @@ const postCancion = (req, res) => {
     const canciones = JSON.parse(fs.readFileSync('repertorio.json', 'utf-8'))
     canciones.push(cancion)
     fs.writeFileSync('repertorio.json', JSON.stringify(canciones, null, 2))
-    res.status(200).send('cancion ingresada')
+    res.status(201).send('cancion ingresada')
   } catch (error) {
     res.status(500).json({message: ' error al ingresar '})
   }
@@ -31,21 +31,30 @@ const postCancion = (req, res) => {
 
 const updCancion = (req, res) => {
   try {
+    const { id } = req.params
     const cancion = req.body
     const canciones = JSON.parse(fs.readFileSync('repertorio.json', 'utf-8'))
-    const id = canciones.
-    canciones.push(cancion)
-    fs.writeFileSync('repertorio.json', JSON.stringify(canciones))
-    res.status(200).send('cancion ingresada')
+    const index = canciones.findIndex(c => c.id == id)
+    canciones[index] = cancion
+    fs.writeFileSync('repertorio.json', JSON.stringify(canciones, null, 2))
+    res.status(201).send('Canción actualizada')
   } catch (error) {
-    res.status(500).json({message: ' error al ingresar '})
+    res.status(500).json({ message: 'Error al actualizar la canción' })
   }
 }
 
+
 const delCancion = (req, res) => {
-  const { id } = req.params
-  canciones = canciones.filter(cancion => cancion.id !== id)
-  res.status(204).end()
+  try {
+    const { id } = req.params
+    const canciones = JSON.parse(fs.readFileSync('repertorio.json', 'utf-8'))
+    const index = canciones.findIndex(c => c.id == id)
+    canciones.splice(index, 1)
+    fs.writeFileSync('repertorio.json', JSON.stringify(canciones, null, 2))
+    res.status(204).end()
+  } catch (error) {
+    res.status(500).json({ message: 'Error al eliminar la canción' })
+  }
 }
 
 
